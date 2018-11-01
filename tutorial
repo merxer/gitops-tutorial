@@ -8,3 +8,7 @@ postgres util:
 - \dS+
 - \dt
 - \q
+
+- change hostname, external url
+- set /etc/hosts (ip -> your external url)
+- open browser with external url domain name)

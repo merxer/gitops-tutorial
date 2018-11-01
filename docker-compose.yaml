@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   mdw_gitlab:
-    hostname: 142.93.21.53
+    hostname: 'mdw-devtools.tac.co.th'
     container_name: mdw_gitlab
     image: gitlab/gitlab-ce:11.4.3-ce.0
     restart: always
@@ -15,6 +15,8 @@ services:
         gitlab_rails['db_database'] = 'mdw_db'
         gitlab_rails['db_adapter'] = 'postgresql'
         gitlab_rails['db_encoding'] = 'utf8'
+        external_url 'http://mdw-devtools.tac.co.th'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
     ports:
       - '80:80'
       - '443:443'
