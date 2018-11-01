@@ -1,0 +1,8 @@
+ocker run -it --rm postgres:11.0-alpine psql -h 142.93.21.53 -U gitlab mdw_db
+
+postgres util:
+- \?
+- \l
+- \conninfo
+- \dt
+- \q
