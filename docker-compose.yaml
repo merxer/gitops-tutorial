@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  mdw_gitlab:
+    hostname: 142.93.21.53
+    container_name: mdw_gitlab
+    image: gitlab/gitlab-ce:11.4.3-ce.0
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+      - '2222:22'
+    volumes:
+      - /opt/gitlab/config:/etc/gitlab
+      - /opt/gitlab/logs:/var/log/gitlab
+      - /opt/gitlab/data:/var/opt/gitlab
