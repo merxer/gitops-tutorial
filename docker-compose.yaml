@@ -5,6 +5,16 @@ services:
     container_name: mdw_gitlab
     image: gitlab/gitlab-ce:11.4.3-ce.0
     restart: always
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        postgresql['enable'] = false
+        gitlab_rails['db_username'] = 'gitlab'
+        gitlab_rails['db_password'] = 'gitlab'
+        gitlab_rails['db_host'] = '142.93.21.53
+        gitlab_rails['db_port'] = '5432'
+        gitlab_rails['db_database'] = 'mdw_db'
+        gitlab_rails['db_adapter'] = 'postgresql'
+        gitlab_rails['db_encoding'] = 'utf8'
     ports:
       - '80:80'
       - '443:443'
@@ -13,7 +23,7 @@ services:
       - /opt/gitlab/config:/etc/gitlab
       - /opt/gitlab/logs:/var/log/gitlab
       - /opt/gitlab/data:/var/opt/gitlab
-      
+
   postgresql:
       image: postgres:11.0-alpine
       restart: always
