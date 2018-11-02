@@ -8,8 +8,8 @@ services:
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         postgresql['enable'] = false
-        gitlab_rails['db_username'] = 'gitlab'
-        gitlab_rails['db_password'] = 'gitlab'
+        gitlab_rails['db_username'] = POSTGRESQL_USER
+        gitlab_rails['db_password'] = POSTGRESQL_PASSWORD
         gitlab_rails['db_host'] = '142.93.21.53
         gitlab_rails['db_port'] = '5432'
         gitlab_rails['db_database'] = 'mdw_db'
@@ -25,6 +25,9 @@ services:
       - /opt/gitlab/config:/etc/gitlab
       - /opt/gitlab/logs:/var/log/gitlab
       - /opt/gitlab/data:/var/opt/gitlab
+    volumes:
+      - POSTGRESQL_USER
+      - POSTGRESQL_PASSWORD
 
   postgresql:
       image: postgres:11.0-alpine
@@ -37,3 +40,9 @@ services:
         - '5432:5432'
       volumes:
         - /opt/postgres/db:/var/lib/postgresql
+
+secrets:
+  POSTGRESQL_USER:
+    file: ./secrets/POSTGRESQL_USER
+  POSTGRESQL_PASSWORD:
+    file: ./secrets/POSTGRESQL_PASSWORD

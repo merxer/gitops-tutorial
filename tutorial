@@ -9,6 +9,14 @@ postgres util:
 - \dt
 - \q
 
+Domain 
+=======
 - change hostname, external url
 - set /etc/hosts (ip -> your external url)
 - open browser with external url domain name)
+
+Secrets
+=======
+docker swarm init --advertise-addr 142.93.21.53
+echo "gitlab" |docker secret create POSTGRESQL_PASSWORD - > POSTGRESQL_PASSWORD
+echo "gitlab" | docker secret create POSTGRESQL_USER - > POSTGRESQL_USER
